@@ -136,7 +136,7 @@ export default {
     // Fetch all books
     async fetchBooks() {
       try {
-        const response = await axios.get("http://localhost:5000/api/books");
+        const response = await axios.get("https://bookshop-lx5f.onrender.com");
         this.books = response.data;
       } catch (error) {
         console.error("Error fetching books:", error);
@@ -146,7 +146,7 @@ export default {
     // Add a new book
     async addBook() {
       try {
-        const response = await axios.post("http://localhost:5000/api/books/addBook", this.newBook);
+        const response = await axios.post("https://bookshop-lx5f.onrender.com/addBook", this.newBook);
         this.books.push(response.data);
         this.newBook = { title: "", author: "", price: null, stock: null }; // Reset form
       } catch (error) {
@@ -163,7 +163,7 @@ export default {
     // Update the book
     async updateBook() {
       try {
-        const response = await axios.put(`http://localhost:5000/api/books/${this.currentBook._id}`, this.currentBook);
+        const response = await axios.put(`https://bookshop-lx5f.onrender.com/${this.currentBook._id}`, this.currentBook);
         const index = this.books.findIndex((book) => book._id === this.currentBook._id);
         this.books[index] = response.data;
         this.cancelEdit(); // Reset edit state
@@ -175,7 +175,7 @@ export default {
     // Delete a book
     async deleteBook(bookId) {
       try {
-        await axios.delete(`http://localhost:5000/api/books/${bookId}`);
+        await axios.delete(`https://bookshop-lx5f.onrender.com/${bookId}`);
         this.books = this.books.filter((book) => book._id !== bookId); // Remove book from list
       } catch (error) {
         console.error("Error deleting book:", error);
